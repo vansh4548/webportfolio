@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Briefcase, Code, Cpu, GraduationCap, Mail, MapPin, Phone, Linkedin, User, Server, Database, Box, Wrench, ArrowUp, Github, FileText, Building, Calendar, Award, X, Instagram, Sparkles } from 'lucide-react';
-import './app.css';
+import './App.css';
 import profile from './assets/profile.png';
 import java from './assets/Full Stack Java Development (1).png';
 import bigdata from './assets/Big Data .png';
