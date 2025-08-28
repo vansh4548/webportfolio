@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Briefcase, Code, Cpu, GraduationCap, Mail, MapPin, Phone, Linkedin, User, Server, Database, Box, Wrench, ArrowUp, Github, FileText, Building, Calendar, Award, X, Instagram, Sparkles } from 'lucide-react';
-import './app.css';
+import './App.css';
 import profile from './assets/profile.png';
 import java from './assets/Full Stack Java Development (1).png';
 import bigdata from './assets/Big Data .png';
@@ -95,7 +95,7 @@ export default function App() {
       {
         role: "Backend Developer",
         company: "Connect Plus Exchange",
-        duration: "June 2024 – Present",
+        duration: "June 2025 – Present",
         description: "Developed scalable backend services for a crypto trading platform using Java & Spring Boot. Implemented Web3j for blockchain functions and secured REST APIs.",
         logo: <Building className="w-8 h-8 text-cyan-400" />
       },
