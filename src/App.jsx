@@ -95,7 +95,7 @@ export default function App() {
       {
         role: "Backend Developer",
         company: "Connect Plus Exchange",
-        duration: "June 2025 – Present",
+        duration: "June 2025 – August 2025",
         description: "Developed scalable backend services for a crypto trading platform using Java & Spring Boot. Implemented Web3j for blockchain functions and secured REST APIs.",
         logo: <Building className="w-8 h-8 text-cyan-400" />
       },
