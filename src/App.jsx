@@ -1,55 +1,129 @@
-import React, { useState, useEffect } from 'react';
-import { Briefcase, Code, Cpu, GraduationCap, Mail, MapPin, Phone, Linkedin, User, Server, Database, Box, Wrench, ArrowUp, Github, FileText, Building, Calendar, Award, X, Instagram, Sparkles } from 'lucide-react';
-import './App.css';
-import profile from './assets/profile.png';
-import java from './assets/Full Stack Java Development (1).png';
-import bigdata from './assets/Big Data .png';
-import Publication from './assets/HealthCare Management System using IOT.png';
-import bank from './assets/banking.png';
-import sale from './assets/sales.png';
-import spam from './assets/spam.png';
-//============== SVG Icons for Skills & Socials ==============//
-const SalesforceIcon = () => (
-    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="w-7 h-7">
-        <title>Salesforce</title>
-        <path d="M11.998 2.51A9.49 9.49 0 002.51 12a9.49 9.49 0 009.488 9.49 9.49 9.49 0 009.49-9.49 9.49 9.49 0 00-9.49-9.49zm4.55 13.24a1.108 1.108 0 01-1.07.72H8.55a1.108 1.108 0 01-1.07-.72 1.108 1.108 0 01.7-1.46l4.2-2.1a1.108 1.108 0 011.46.72v2.14zm-5.62-4.1a1.108 1.108 0 01-1.07.72H5.73a1.108 1.108 0 01-.37-2.18l4.2-2.1a1.108 1.108 0 011.46.72v2.14a1.108 1.108 0 01-1.07.72z"/>
-    </svg>
-);
+import React, { useState, useEffect } from "react";
+import {
+  Briefcase,
+  Code,
+  Cpu,
+  GraduationCap,
+  Mail,
+  MapPin,
+  Phone,
+  Linkedin,
+  User,
+  Server,
+  Database,
+  Box,
+  Wrench,
+  ArrowUp,
+  Github,
+  FileText,
+  Building,
+  Calendar,
+  Award,
+  X,
+  Instagram,
+  Sparkles,
+  ExternalLink,
+  Download,
+  Globe,
+  Coffee,
+  Heart,
+  Zap,
+  Terminal,
+  Cloud,
+  Shield,
+  CpuIcon,
+  DatabaseIcon,
+  Code2,
+  Network,
+  Smartphone,
+  Palette,
+  GitBranch,
+  Container,
+  TestTube,
+  Key,
+  MessageCircle,
+  Bot,
+  Workflow,
+  Menu,
+} from "lucide-react";
+import "./App.css";
 
+// Import assets
+import linkedin from "./assets/linkedin.png";
+import java from "./assets/Full Stack Java Development (1).png";
+import bigdata from "./assets/Big Data .png";
+import Publication from "./assets/HealthCare Management System using IOT.png";
+import bank from "./assets/banking.png";
+import sale from "./assets/sales.png";
+import spam from "./assets/spam.png";
+
+//============== Custom Skill Icons ==============//
 const SkillIcon = ({ name }) => {
-    const icons = {
-        Java: <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><title>Java</title><path d="M12 24a12 12 0 1 1 0-24 12 12 0 0 1 0 24zM18.832 15.06a1.362 1.362 0 0 0-1.023.29 3.09 3.09 0 0 0-.645.626c-.36.567-.692 1.15-.767 1.253-.06.09-.12.112-.33-.03-.195-.134-.99-1.004-1.365-1.424-.375-.42-.69-.795-.69-.81 0-.015.195-.24.435-.495.24-.255.435-.48.435-.495 0-.015-.24-.03-.54-.03-1.02 0-1.545.285-1.74.495-.118.133.062.533.495 1.11.45.585.81 1.05.81 1.05s.09.12.21.12c.09 0 .21-.06.21-.12 0-.075-.105-.345-.24-.585-.135-.24-.255-.45-.255-.48 0-.03.225-.21.495-.39.27-.18.495-.3.495-.27 0 .015-.12.195-.27.405-.15.21-.285.435-.285.495 0 .045.06.12.135.165.075.045.195.06.27.06.135 0 .255-.06.345-.18.09-.12.165-.3.195-.405.03-.09.045-.15.045-.15s.33.315.735.69c.405.375.75.69.75.72 0 .03-.03.075-.09.12a.3.3 0 0 1-.21.075c-.09 0-.18-.03-.24-.09-.06-.06-.12-.165-.15-.255-.03-.09-.06-.165-.06-.165s-.495.585-1.11 1.29c-.615.705-.885.96-.885.99 0 .06.3.12.705.12.375 0 .72-.03 1.035-.09.315-.06.63-.15.63-.15s.06-.09.06-.18a.36.36 0 0 0-.045-.18c-.045-.075-.12-.165-.12-.165s.435-.495.915-1.05c.48-.555.735-.87.735-.915a.2.2 0 0 0-.06-.15c-.09-.06-.195-.09-.3-.09a.42.42 0 0 0-.315.12z"/></svg>,
-        SpringBoot: <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><title>Spring Boot</title><path d="M22.512 13.944c-.544.288-1.056.72-1.536 1.296-.864 1.08-1.536 2.376-2.016 3.84-.24.72-.408 1.464-.528 2.232-.024.216-.048.408-.048.576a.72.72 0 0 1-.744.72H6.36a.72.72 0 0 1-.744-.696c0-.192.024-.408.048-.624.12-.768.288-1.512.528-2.232.48-1.464 1.152-2.76 2.016-3.84.48-.576.992-1.008 1.536-1.296.6-.336 1.224-.528 1.872-.528s1.272.192 1.872.528zm-1.824-3.96c.24-.264.384-.576.432-.936.072-.36.072-.72.024-1.08a2.88 2.88 0 0 0-.48-1.272c-.24-.312-.552-.552-.912-.72a3.336 3.336 0 0 0-1.272-.288 3.336 3.336 0 0 0-1.272.288c-.36.168-.672.408-.912.72a2.88 2.88 0 0 0-.48 1.272c-.048.36-.048.72.024 1.08.048.36.192.672.432.936.24.264.528.456.864.576.336.12.672.168 1.008.168s.672-.048 1.008-.168c.336-.12.624-.312.864-.576zM18.66 3.096A11.952 11.952 0 0 0 12 0a11.952 11.952 0 0 0-6.66 3.096A11.952 11.952 0 0 0 0 12c0 6.624 5.376 12 12 12s12-5.376 12-12A11.952 11.952 0 0 0 18.66 3.096z"/></svg>,
-        React: <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><title>React</title><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2.06-8.07c.53-.53 1.23-1.04 2.06-1.04s1.53.51 2.06 1.04c.53.53.53 1.38 0 1.91s-1.38.53-1.91 0c-.53-.53-1.04-1.23-1.04-2.06s.51-1.53 1.04-2.06c.53-.53 1.38-.53 1.91 0s.53 1.38 0 1.91l-3.97 3.97c-.53.53-1.38.53-1.91 0s-.53-1.38 0-1.91l3.97-3.97zM12 6.5c-1.3 0-2.5.46-3.47 1.29-.97.83-1.53 2-1.53 3.21s.56 2.38 1.53 3.21c.97.83 2.17 1.29 3.47 1.29s2.5-.46 3.47-1.29c.97-.83 1.53-2 1.53-3.21s-.56-2.38-1.53-3.21C14.5 6.96 13.3 6.5 12 6.5z"/></svg>,
-        Python: <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><title>Python</title><path d="M12 24c6.627 0 12-5.373 12-12S18.627 0 12 0 0 5.373 0 12s5.373 12 12 12zM6.21 15.79c.49 0 .89.4.89.89s-.4.89-.89.89-.89-.4-.89-.89.4-.89.89-.89zm1.78-6.36c.49 0 .89.4.89.89s-.4.89-.89.89-.89-.4-.89-.89.4-.89.89-.89zm-1.78 7.25c.49 0 .89.4.89.89s-.4.89-.89.89-.89-.4-.89-.89.4-.89.89-.89zm13.59-7.25c.49 0 .89.4.89.89s-.4.89-.89.89-.89-.4-.89-.89.4-.89.89-.89zm-1.78 6.36c.49 0 .89.4.89.89s-.4.89-.89.89-.89-.4-.89-.89.4-.89.89-.89zm1.78-7.25c.49 0 .89.4.89.89s-.4.89-.89.89-.89-.4-.89-.89.4-.89.89-.89zM12 7.11c-2.7 0-4.89 2.19-4.89 4.89s2.19 4.89 4.89 4.89 4.89-2.19 4.89-4.89-2.19-4.89-4.89-4.89z"/></svg>,
-        MySQL: <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><title>MySQL</title><path d="M12.488 13.784c.324.204.696.36.984.624.528.48 1.032 1.116 1.344 1.8.312.684.432 1.452.432 2.208 0 .192-.012.444-.024.648a.72.72 0 0 1-.744.696H8.52a.72.72 0 0 1-.744-.696c0-.204.012-.456.024-.648 0-.756.12-1.524.432-2.208.312-.684.816-1.32 1.344-1.8.288-.264.66-.42.984-.624V8.4h1.944v5.384zm-.444-10.74C5.604 3.044 0 7.92 0 12c0 4.08 5.604 8.956 12.044 8.956 6.444 0 11.956-4.876 11.956-8.956C24 7.92 18.488 3.044 12.044 3.044zM12 22.08c-5.52 0-10.08-4.08-10.08-8.064 0-3.984 4.56-8.064 10.08-8.064 5.52 0 9.912 4.08 9.912 8.064 0 3.984-4.392 8.064-9.912 8.064z"/></svg>,
-        MongoDB: <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><title>MongoDB</title><path d="M12.182 18.358c-2.24-.707-3.92-2.31-4.665-4.432-.737-2.102-.54-4.39.49-6.342.99-1.88 2.76-3.26 4.89-3.77 2.14-.51 4.39-.1 6.35.99 1.95 1.09 3.33 2.86 3.77 4.9.51 2.04.1 4.28-.99 6.23-1.09 1.95-2.86 3.33-4.9 3.77-2.03.44-4.28.04-6.22-.95zM12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0z"/></svg>,
-        Solidity: <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><title>Solidity</title><path d="M12 0L3.46 6v12L12 24l8.54-6V6L12 0zm6.34 16.5L12 20.95l-6.34-4.45V7.5L12 3.05l6.34 4.45v9.05z"/></svg>,
-        Git: <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><title>Git</title><path d="M23.55 10.15L13.85.45a1.5 1.5 0 0 0-2.12 0L1.45 10.73a1.5 1.5 0 0 0 0 2.12l4.24 4.24a1.5 1.5 0 0 0 2.12 0L12 12.85v6.7a1.5 1.5 0 0 0 1.5 1.5h.05a1.5 1.5 0 0 0 1.5-1.5v-6.7l4.24 4.24a1.5 1.5 0 0 0 2.12 0l2.12-2.12a1.5 1.5 0 0 0 0-2.12zM12 1.5a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1zm-6 6a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1zm12 0a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1z"/></svg>,
-    };
-    const Icon = icons[name] || <Code className="w-full h-full" />;
-    return <div className="w-6 h-6">{Icon}</div>;
+  const icons = {
+    Java: <CpuIcon className="w-5 h-5 md:w-6 md:h-6 text-red-400" />,
+    SpringBoot: <Zap className="w-5 h-5 md:w-6 md:h-6 text-green-400" />,
+    React: <Code2 className="w-5 h-5 md:w-6 md:h-6 text-cyan-400" />,
+    Python: <Terminal className="w-5 h-5 md:w-6 md:h-6 text-yellow-400" />,
+    MySQL: <DatabaseIcon className="w-5 h-5 md:w-6 md:h-6 text-blue-400" />,
+    MongoDB: <Database className="w-5 h-5 md:w-6 md:h-6 text-green-500" />,
+    Solidity: <Network className="w-5 h-5 md:w-6 md:h-6 text-gray-400" />,
+    Git: <GitBranch className="w-5 h-5 md:w-6 md:h-6 text-orange-400" />,
+    Nodejs: <Code className="w-5 h-5 md:w-6 md:h-6 text-green-500" />,
+    HTML: <Globe className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />,
+    CSS: <Palette className="w-5 h-5 md:w-6 md:h-6 text-blue-500" />,
+    Ethereum: <Shield className="w-5 h-5 md:w-6 md:h-6 text-purple-400" />,
+    Polygon: <Workflow className="w-5 h-5 md:w-6 md:h-6 text-purple-500" />,
+    Docker: <Container className="w-5 h-5 md:w-6 md:h-6 text-blue-400" />,
+    Postman: <TestTube className="w-5 h-5 md:w-6 md:h-6 text-orange-400" />,
+    JWT: <Key className="w-5 h-5 md:w-6 md:h-6 text-pink-400" />,
+    JavaScript: <Code2 className="w-5 h-5 md:w-6 md:h-6 text-yellow-400" />,
+  };
+
+  const Icon = icons[name] || (
+    <Code className="w-5 h-5 md:w-6 md:h-6 text-gray-400" />
+  );
+  return <div className="w-5 h-5 md:w-6 md:h-6">{Icon}</div>;
 };
 
+//============== Social Media Icons ==============//
+const SocialIcon = ({ platform, className = "" }) => {
+  const icons = {
+    linkedin: <Linkedin className={`w-5 h-5 md:w-6 md:h-6 ${className}`} />,
+    github: <Github className={`w-5 h-5 md:w-6 md:h-6 ${className}`} />,
+    instagram: <Instagram className={`w-5 h-5 md:w-6 md:h-6 ${className}`} />,
+    salesforce: <Cloud className={`w-5 h-5 md:w-6 md:h-6 ${className}`} />,
+    codolio: <Code className={`w-5 h-5 md:w-6 md:h-6 ${className}`} />,
+  };
+
+  return (
+    icons[platform] || (
+      <Globe className={`w-5 h-5 md:w-6 md:h-6 ${className}`} />
+    )
+  );
+};
 
 //============== App Component ==============//
-// This is the main component that renders the entire portfolio.
 export default function App() {
-  const [activeSection, setActiveSection] = useState('');
+  const [activeSection, setActiveSection] = useState("");
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [selectedCert, setSelectedCert] = useState(null);
-  const [jobDescription, setJobDescription] = useState('');
-  const [generatedPitch, setGeneratedPitch] = useState('');
-  const [isGenerating, setIsGenerating] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Effect to handle scroll events for active navigation link and scroll-to-top button
+  // Effect to handle scroll events
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['about', 'experience', 'projects', 'skills', 'certificates', 'ai-pitch', 'contact'];
-      // Adjust offset for better accuracy
-      const scrollPosition = window.scrollY + window.innerHeight / 2;
+      const sections = [
+        "about",
+        "experience",
+        "education",
+        "projects",
+        "skills",
+        "certificates",
+        "contact",
+      ];
+      const scrollPosition = window.scrollY + window.innerHeight / 3;
 
-      let currentSection = '';
+      let currentSection = "";
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element && scrollPosition >= element.offsetTop) {
@@ -57,7 +131,7 @@ export default function App() {
         }
       }
       setActiveSection(currentSection);
-      
+
       if (window.scrollY > 300) {
         setShowScrollTop(true);
       } else {
@@ -65,20 +139,22 @@ export default function App() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Function to handle smooth scrolling
   const scrollToSection = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    setIsMobileMenuOpen(false);
   };
 
   // Data for the portfolio
   const portfolioData = {
     name: "Vansh Garg",
     title: "Backend & Blockchain Developer",
-    about: "Hi, I'm Vansh Garg, a passionate and results-driven Backend Developer with experience in building secure, scalable, and high-performance applications. I specialize in Java, Spring Boot, MySQL, and Blockchain technologies, with a strong focus on crafting robust REST APIs and integrating decentralized functionalities. I have hands-on experience working in both startup and remote environments, contributing to live projects in the cryptocurrency and blockchain domains. I'm always eager to explore innovative solutions and grow my expertise in cutting-edge technologies.",
+    about:
+      "Hi, I'm Vansh Garg, a passionate and results-driven Backend Developer with experience in building secure, scalable, and high-performance applications. I specialize in Java, Spring Boot, MySQL, and Blockchain technologies, with a strong focus on crafting robust REST APIs and integrating decentralized functionalities. I have hands-on experience working in both startup and remote environments, contributing to live projects in the cryptocurrency and blockchain domains. I'm always eager to explore innovative solutions and grow my expertise in cutting-edge technologies.",
     contact: {
       location: "New Delhi, India",
       phone: "+91 7017005939",
@@ -88,306 +164,613 @@ export default function App() {
         github: "https://github.com/vansh4548",
         instagram: "https://www.instagram.com/vanshgarg._/",
         salesforce: "https://www.salesforce.com/trailblazer/profile",
-        codolio: "https://codolio.com/profile/vansh7017"
-      }
+        codolio: "https://codolio.com/profile/vansh7017",
+      },
     },
     experience: [
       {
         role: "Backend Developer",
         company: "Connect Plus Exchange",
         duration: "June 2025 – August 2025",
-        description: "Developed scalable backend services for a crypto trading platform using Java & Spring Boot. Implemented Web3j for blockchain functions and secured REST APIs.",
-        logo: <Building className="w-8 h-8 text-cyan-400" />
+        description:
+          "Developed scalable backend services for a crypto trading platform using Java & Spring Boot. Implemented Web3j for blockchain functions and secured REST APIs.",
+        logo: <Building className="w-6 h-6 md:w-8 md:h-8 text-cyan-400" />,
       },
       {
         role: "Blockchain Developer Intern",
         company: "MetaCrafters (Remote)",
         duration: "June 2023 – August 2023",
-        description: "Wrote and deployed Solidity smart contracts (ERC20, NFTs) on Ethereum & Polygon. Built a Polygon ID issuer for decentralized identity use cases.",
-        logo: <Code className="w-8 h-8 text-cyan-400" />
-      }
+        description:
+          "Wrote and deployed Solidity smart contracts (ERC20, NFTs) on Ethereum & Polygon. Built a Polygon ID issuer for decentralized identity use cases.",
+        logo: <Code className="w-6 h-6 md:w-8 md:h-8 text-cyan-400" />,
+      },
     ],
     education: [
-        {
-            degree: "Bachelor of Engineering in Computer Science and Engineering",
-            institution: "Chandigarh University",
-            location: "Mohali, Punjab",
-            duration: "Aug. 2021 – May 2025"
-        },
-        {
-            degree: "Intermediate Examination",
-            institution: "Saraswati Vidya Mandir Inter College",
-            location: "Muzaffarnagar, Uttar Pradesh",
-            duration: "May 2020 – May 2021"
-        }
+      {
+        degree: "Bachelor of Engineering in Computer Science and Engineering",
+        institution: "Chandigarh University",
+        location: "Mohali, Punjab",
+        duration: "Aug. 2021 – May 2025",
+      },
+      {
+        degree: "Intermediate Examination",
+        institution: "Saraswati Vidya Mandir Inter College",
+        location: "Muzaffarnagar, Uttar Pradesh",
+        duration: "May 2020 – May 2021",
+      },
     ],
     skills: [
-        { 
-          category: 'Languages & Databases', 
-          items: ['Java', 'Python', 'JavaScript', 'Solidity', 'MySQL', 'MongoDB']
-        },
-        { 
-          category: 'Backend & Frontend', 
-          items: ['Spring Boot', 'Node.js', 'React', 'HTML', 'CSS']
-        },
-        { 
-          category: 'Blockchain & Tools', 
-          items: ['Ethereum', 'Polygon', 'Git', 'Docker', 'Postman', 'JWT']
-        }
+      {
+        category: "Languages & Databases",
+        icon: <Terminal className="w-5 h-5 md:w-6 md:h-6 text-cyan-400" />,
+        items: ["Java", "Python", "JavaScript", "Solidity", "MySQL", "MongoDB"],
+      },
+      {
+        category: "Backend & Frontend",
+        icon: <Server className="w-5 h-5 md:w-6 md:h-6 text-cyan-400" />,
+        items: ["Spring Boot", "Nodejs", "React", "HTML", "CSS"],
+      },
+      {
+        category: "Blockchain & Tools",
+        icon: <Shield className="w-5 h-5 md:w-6 md:h-6 text-cyan-400" />,
+        items: ["Ethereum", "Polygon", "Git", "Docker", "Postman", "JWT"],
+      },
     ],
     projects: [
       {
         title: "Grocery Sales Forecasting",
         stack: "Spring Boot + React + ML",
-        description: "Integrated a sales prediction module using ARIMA time series forecasting. The app displays predictions on the frontend with dynamic graphs and filters.",
+        description:
+          "Integrated a sales prediction module using ARIMA time series forecasting. The app displays predictions on the frontend with dynamic graphs and filters.",
         imageUrl: sale,
-        github: "https://github.com/vansh4548/Sales-Forcasting-Using-Machine-Learning",
-        report: "#"
+        github:
+          "https://github.com/vansh4548/Sales-Forcasting-Using-Machine-Learning",
+        report: "#",
+        icon: <Bot className="w-6 h-6 md:w-8 md:h-8 text-cyan-400" />,
       },
       {
         title: "Spam Detection System",
         stack: "Python + Streamlit",
-        description: "Developed an AI-based system that detects spam messages using machine learning models. It provides a user-friendly interface, stores results, and presents insights graphically.",
+        description:
+          "Developed an AI-based system that detects spam messages using machine learning models. It provides a user-friendly interface, stores results, and presents insights graphically.",
         imageUrl: spam,
         github: "https://github.com/vansh4548/AI-based-Spam-Detection-system",
-        report: "#"
+        report: "#",
+        icon: <Shield className="w-6 h-6 md:w-8 md:h-8 text-cyan-400" />,
       },
       {
         title: "Banking Management System",
         stack: "Spring Boot + MySQL + ReactJS",
-        description: "Created a backend using Spring Boot and MySQL with a ReactJS frontend to handle bank account creation, deposits, withdrawals, and transaction logs.",
+        description:
+          "Created a backend using Spring Boot and MySQL with a ReactJS frontend to handle bank account creation, deposits, withdrawals, and transaction logs.",
         imageUrl: bank,
-        github: "https://github.com/vansh4548/Banking-Management-System-using-Sping-Boot-and-React.js",
-        report: "#"
-      }
+        github:
+          "https://github.com/vansh4548/Banking-Management-System-using-Sping-Boot-and-React.js",
+        report: "#",
+        icon: <Database className="w-6 h-6 md:w-8 md:h-8 text-cyan-400" />,
+      },
     ],
     certificates: [
-        {
-            title: "Full Stack Java Development",
-            issuer: "Skill Up",
-            imageUrl: java
-        },
-        {
-            title: "Big Data",
-            issuer: "Infosys Springboard",
-            imageUrl: bigdata
-        },
-        {
-            title: "Healthcare Monitoring System using IOT",
-            issuer: "IJRASET",
-            imageUrl: Publication
-        }
-    ]
+      {
+        title: "Full Stack Java Development",
+        issuer: "Skill Up",
+        imageUrl: java,
+        icon: <Code2 className="w-6 h-6 md:w-8 md:h-8 text-cyan-400" />,
+      },
+      {
+        title: "Big Data",
+        issuer: "Infosys Springboard",
+        imageUrl: bigdata,
+        icon: <Database className="w-6 h-6 md:w-8 md:h-8 text-cyan-400" />,
+      },
+      {
+        title: "Healthcare Monitoring System using IOT",
+        issuer: "IJRASET",
+        imageUrl: Publication,
+        icon: <Cpu className="w-6 h-6 md:w-8 md:h-8 text-cyan-400" />,
+      },
+    ],
   };
-
-  const handleGeneratePitch = async () => {
-    if (!jobDescription.trim() || isGenerating) return;
-    
-    setIsGenerating(true);
-    setGeneratedPitch('');
-
-    const portfolioContext = `
-      About: ${portfolioData.about}
-      Experience: ${JSON.stringify(portfolioData.experience.map(e => ({ role: e.role, company: e.company, description: e.description })))}
-      Skills: ${JSON.stringify(portfolioData.skills.map(s => s.items).flat())}
-      Projects: ${JSON.stringify(portfolioData.projects.map(p => ({ title: p.title, description: p.description, stack: p.stack })))}
-    `;
-
-    const prompt = `You are an expert career assistant for a developer named Vansh Garg. Based on his portfolio information provided below and the job description, write a concise and compelling paragraph (3-4 sentences) that highlights why Vansh is an excellent candidate for the role. Directly reference specific skills, experiences, or projects from his portfolio that align with the job description.\n\n---Vansh Garg's Portfolio---\n${portfolioContext}\n\n---Job Description---\n${jobDescription}\n\n---Generated Pitch---`;
-
-    try {
-        let chatHistory = [];
-        chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-        const payload = { contents: chatHistory };
-        const apiKey = ""; // API key is handled by the environment
-        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-        
-        const response = await fetch(apiUrl, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        });
-
-        if (!response.ok) {
-            throw new Error(`API request failed with status ${response.status}`);
-        }
-
-        const result = await response.json();
-        
-        if (result.candidates && result.candidates.length > 0 &&
-            result.candidates[0].content && result.candidates[0].content.parts &&
-            result.candidates[0].content.parts.length > 0) {
-          const text = result.candidates[0].content.parts[0].text;
-          setGeneratedPitch(text);
-        } else {
-          setGeneratedPitch("Sorry, I couldn't generate a pitch. The response from the AI was empty.");
-        }
-    } catch (error) {
-        console.error("Error generating pitch:", error);
-        setGeneratedPitch("An error occurred while generating the pitch. Please check the console for details.");
-    } finally {
-        setIsGenerating(false);
-    }
-  };
-
 
   // Navigation items
   const navItems = [
-    { id: 'about', label: 'About' },
-    { id: 'experience', label: 'Experience' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'certificates', label: 'Certificates' },
-    { id: 'contact', label: 'Contact' },
+    { id: "about", label: "About", icon: <User className="w-4 h-4" /> },
+    {
+      id: "experience",
+      label: "Experience",
+      icon: <Briefcase className="w-4 h-4" />,
+    },
+    { id: "projects", label: "Projects", icon: <Code className="w-4 h-4" /> },
+    { id: "skills", label: "Skills", icon: <Zap className="w-4 h-4" /> },
+    {
+      id: "certificates",
+      label: "Certificates",
+      icon: <Award className="w-4 h-4" />,
+    },
+    { id: "contact", label: "Contact", icon: <Mail className="w-4 h-4" /> },
   ];
+
+  const handleSocialClick = (url) => {
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
+  const handleEmailClick = () => {
+    window.location.href = `mailto:${portfolioData.contact.email}`;
+  };
+
+  const handlePhoneClick = () => {
+    window.location.href = `tel:${portfolioData.contact.phone}`;
+  };
+
+  const handleProjectLinkClick = (url) => {
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
 
   return (
     <div className="bg-slate-900 text-gray-300 font-sans leading-relaxed">
-      {/* Header */}
-      <header className="bg-slate-900/70 backdrop-blur-lg sticky top-0 z-40 border-b border-slate-800">
-        <nav className="container mx-auto px-6 py-3 flex justify-center items-center">
-          <div className="hidden md:flex items-center space-x-2 bg-slate-800/50 border border-slate-700 rounded-full p-1">
-            {navItems.map(item => (
-              <a 
+      {/* Enhanced Header */}
+      <header className="bg-slate-900/95 backdrop-blur-xl sticky top-0 z-50 border-b border-slate-800/50 shadow-2xl shadow-slate-900/50">
+        <nav className="container mx-auto px-4 md:px-6 py-3 md:py-4 flex justify-between items-center">
+          <div className="flex items-center space-x-2 md:space-x-3">
+            <div className="w-2 h-2 md:w-3 md:h-3 bg-cyan-400 rounded-full animate-pulse"></div>
+            <span className="text-white font-bold text-base md:text-lg tracking-tight">
+              Vansh Garg
+            </span>
+          </div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-1 bg-slate-800/80 border border-slate-700/50 rounded-2xl p-1.5 shadow-inner">
+            {navItems.map((item) => (
+              <div
                 key={item.id}
-                href={`#${item.id}`}
-                onClick={(e) => { e.preventDefault(); scrollToSection(item.id); }}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 ${activeSection === item.id ? 'bg-slate-700 text-cyan-300' : 'text-gray-400 hover:bg-slate-800/50 hover:text-white'}`}
+                onClick={() => scrollToSection(item.id)}
+                className={`flex items-center gap-2 px-4 md:px-5 py-2 md:py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 cursor-pointer ${
+                  activeSection === item.id
+                    ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/25"
+                    : "text-gray-400 hover:text-white hover:bg-slate-700/50"
+                }`}
               >
-                {item.label}
-              </a>
+                {item.icon}
+                <span className="hidden lg:inline">{item.label}</span>
+              </div>
             ))}
           </div>
+
+          {/* Mobile Menu Button */}
+          <div className="flex items-center gap-2 md:gap-4">
+            <div
+              onClick={() => scrollToSection("contact")}
+              className="hidden md:flex items-center gap-2 bg-cyan-500 text-white font-semibold py-2 md:py-2.5 px-4 md:px-6 rounded-xl hover:bg-cyan-600 transition-all duration-300 shadow-lg hover:shadow-cyan-500/30 transform hover:-translate-y-0.5 cursor-pointer"
+            >
+              <Mail className="w-4 h-4" />
+              <span>Hire Me</span>
+            </div>
+
+            <div
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden bg-slate-800/50 p-2 rounded-lg border border-slate-700/50 cursor-pointer"
+            >
+              <Menu className="w-5 h-5 text-gray-400" />
+            </div>
+          </div>
+
+          {/* Mobile Navigation Menu */}
+          {isMobileMenuOpen && (
+            <div className="absolute top-full left-0 right-0 bg-slate-900/95 backdrop-blur-xl border-b border-slate-800/50 md:hidden">
+              <div className="container mx-auto px-4 py-4">
+                <div className="grid grid-cols-2 gap-2">
+                  {navItems.map((item) => (
+                    <div
+                      key={item.id}
+                      onClick={() => scrollToSection(item.id)}
+                      className={`flex items-center gap-2 p-3 rounded-lg text-sm font-semibold transition-all duration-300 cursor-pointer ${
+                        activeSection === item.id
+                          ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/25"
+                          : "text-gray-400 hover:text-white hover:bg-slate-800/50"
+                      }`}
+                    >
+                      {item.icon}
+                      {item.label}
+                    </div>
+                  ))}
+                </div>
+                <div
+                  onClick={() => scrollToSection("contact")}
+                  className="mt-3 flex items-center justify-center gap-2 bg-cyan-500 text-white font-semibold p-3 rounded-lg hover:bg-cyan-600 transition-all duration-300 shadow-lg cursor-pointer"
+                >
+                  <Mail className="w-4 h-4" />
+                  <span>Hire Me</span>
+                </div>
+              </div>
+            </div>
+          )}
         </nav>
       </header>
 
-      <main className="container mx-auto px-6">
-        {/* Hero Section */}
-        <section id="hero" className="relative min-h-[90vh] flex items-center py-20 overflow-hidden">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60rem] h-[60rem] bg-gradient-to-br from-cyan-500/10 to-slate-900 blur-3xl rounded-full"></div>
-            <div className="container mx-auto px-6 relative">
-                <div className="grid md:grid-cols-5 gap-12 items-center">
-                    <div className="md:col-span-2 flex justify-center">
-                        <div className="relative group">
-                            <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-3xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
-                            <img 
-                                src={profile}
-                                alt="Vansh Garg" 
-                                className="relative w-full max-w-sm rounded-3xl object-cover shadow-2xl"
-                            />
-                        </div>
-                    </div>
-                    <div className="md:col-span-3">
-                        <span className="text-cyan-400 font-semibold tracking-wider text-lg">Hi, I'm {portfolioData.name}</span>
-                        <h1 className="text-4xl md:text-6xl font-extrabold text-white mt-2 mb-4 leading-tight tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
-                            {portfolioData.title}
-                        </h1>
-                        <p className="text-lg text-gray-400 mb-8 max-w-xl">
-                            I build secure, scalable, and high-performance applications with a focus on backend and blockchain technologies.
-                        </p>
-                        <div className="flex flex-wrap gap-4 mb-8">
-                            <a href="#contact" onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }} className="bg-cyan-500 text-white font-bold py-3 px-8 rounded-full hover:bg-cyan-600 transition-all duration-300 shadow-lg hover:shadow-cyan-500/30 transform hover:-translate-y-1">
-                                Get In Touch
-                            </a>
-                            <a href="#projects" onClick={(e) => { e.preventDefault(); scrollToSection('projects'); }} className="bg-transparent text-cyan-400 font-bold py-3 px-8 rounded-full border-2 border-cyan-400 hover:bg-cyan-400 hover:text-slate-900 transition-all duration-300 shadow-lg transform hover:-translate-y-1">
-                                View My Work
-                            </a>
-                        </div>
-                        <div className="flex items-center gap-6">
-                            <a href={portfolioData.contact.socials.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-transform hover:scale-110"><Linkedin className="w-7 h-7"/></a>
-                            <a href={portfolioData.contact.socials.github} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-transform hover:scale-110"><Github className="w-7 h-7"/></a>
-                            <a href={portfolioData.contact.socials.instagram} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-transform hover:scale-110"><Instagram className="w-7 h-7"/></a>
-                            <a href={portfolioData.contact.socials.salesforce} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-transform hover:scale-110"><SalesforceIcon /></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <main className="container mx-auto px-4 md:px-6">
+        {/* Enhanced Hero Section */}
+        <section
+          id="hero"
+          className="relative min-h-screen flex items-center py-12 md:py-20 overflow-hidden"
+        >
+          {/* Animated Background */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute top-1/4 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-cyan-500/10 rounded-full blur-3xl animate-float"></div>
+            <div className="absolute bottom-1/4 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-blue-500/10 rounded-full blur-3xl animate-float-delayed"></div>
+            <div className="absolute top-1/2 left-1/2 w-48 h-48 md:w-80 md:h-80 bg-purple-500/5 rounded-full blur-3xl animate-pulse"></div>
+          </div>
 
-        {/* About Me Section */}
-        <section id="about" className="py-24">
-          <h2 className="text-4xl font-bold text-center mb-4 text-white tracking-tight">About Me</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-12"></div>
-          <div className="max-w-4xl mx-auto text-center text-gray-400 text-lg leading-relaxed">
-            <p>{portfolioData.about}</p>
+          <div className="container mx-auto px-4 md:px-6 relative">
+            <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
+              <div className="flex justify-center lg:justify-start order-2 lg:order-1">
+                <div className="relative group">
+                  <div className="absolute -inset-2 md:-inset-4 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-3xl blur-2xl opacity-30 group-hover:opacity-50 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+                  <div className="relative">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-3xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
+                    <img
+                      src={linkedin}
+                      alt="Vansh Garg"
+                      className="relative w-64 h-64 md:w-80 md:h-80 rounded-3xl object-cover shadow-2xl border-4 border-slate-800/50 group-hover:border-cyan-400/30 transition-all duration-500"
+                    />
+                  </div>
+
+                  {/* Floating elements */}
+                  <div className="absolute -top-2 -right-2 md:-top-4 md:-right-4 w-6 h-6 md:w-8 md:h-8 bg-cyan-400 rounded-full animate-bounce shadow-lg shadow-cyan-400/50"></div>
+                  <div className="absolute -bottom-2 -left-2 md:-bottom-4 md:-left-4 w-4 h-4 md:w-6 md:h-6 bg-blue-400 rounded-full animate-bounce delay-300 shadow-lg shadow-blue-400/50"></div>
+                </div>
+              </div>
+
+              <div className="text-center lg:text-left order-1 lg:order-2">
+                <div className="inline-flex items-center gap-2 bg-slate-800/50 border border-slate-700/50 rounded-2xl px-3 py-1.5 md:px-4 md:py-2 mb-4 md:mb-6">
+                  <Sparkles className="w-3 h-3 md:w-4 md:h-4 text-cyan-400" />
+                  <span className="text-cyan-400 font-semibold text-xs md:text-sm tracking-wider">
+                    Available for new opportunities
+                  </span>
+                </div>
+
+                <h1 className="text-3xl md:text-5xl lg:text-7xl font-black text-white mb-4 md:mb-6 leading-tight tracking-tight">
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-cyan-100 to-gray-400">
+                    Vansh Garg
+                  </span>
+                </h1>
+
+                <div className="text-xl md:text-2xl lg:text-4xl font-bold text-gray-400 mb-6 md:mb-8">
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+                    {portfolioData.title}
+                  </span>
+                </div>
+
+                <p className="text-base md:text-lg lg:text-xl text-gray-400 mb-8 md:mb-10 max-w-2xl leading-relaxed">
+                  Building the future with secure, scalable applications and
+                  cutting-edge blockchain solutions that push technological
+                  boundaries.
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-3 md:gap-4 mb-8 md:mb-12 justify-center lg:justify-start">
+                  <div
+                    onClick={() => scrollToSection("contact")}
+                    className="group bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold py-3 md:py-4 px-6 md:px-10 rounded-2xl hover:from-cyan-600 hover:to-blue-700 transition-all duration-300 shadow-2xl hover:shadow-cyan-500/40 transform hover:-translate-y-1 flex items-center justify-center gap-2 md:gap-3 cursor-pointer"
+                  >
+                    <span className="text-sm md:text-base">
+                      Start Conversation
+                    </span>
+                    <Mail className="w-4 h-4 md:w-5 md:h-5 group-hover:scale-110 transition-transform" />
+                  </div>
+
+                  <div
+                    onClick={() => scrollToSection("projects")}
+                    className="group bg-transparent text-cyan-400 font-bold py-3 md:py-4 px-6 md:px-10 rounded-2xl border-2 border-cyan-400 hover:bg-cyan-400 hover:text-slate-900 transition-all duration-300 shadow-lg hover:shadow-cyan-400/30 transform hover:-translate-y-1 flex items-center justify-center gap-2 md:gap-3 cursor-pointer"
+                  >
+                    <span className="text-sm md:text-base">Explore Work</span>
+                    <ExternalLink className="w-4 h-4 md:w-5 md:h-5 group-hover:scale-110 transition-transform" />
+                  </div>
+                </div>
+
+                {/* Enhanced Social Links */}
+                <div className="flex items-center justify-center lg:justify-start gap-4 md:gap-6">
+                  {Object.entries(portfolioData.contact.socials).map(
+                    ([platform, url]) => (
+                      <div
+                        key={platform}
+                        onClick={() => handleSocialClick(url)}
+                        className="group bg-slate-800/50 p-2 md:p-3 rounded-xl border border-slate-700/50 hover:border-cyan-400/50 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-cyan-500/20 cursor-pointer"
+                      >
+                        <SocialIcon
+                          platform={platform}
+                          className="text-gray-400 group-hover:text-cyan-400"
+                        />
+                      </div>
+                    )
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Scroll indicator */}
+          <div className="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <div className="w-5 h-8 md:w-6 md:h-10 border-2 border-cyan-400 rounded-full flex justify-center">
+              <div className="w-1 h-2 md:h-3 bg-cyan-400 rounded-full mt-2"></div>
+            </div>
           </div>
         </section>
 
-        {/* Experience Section */}
-        <section id="experience" className="py-24">
-            <h2 className="text-4xl font-bold text-center mb-4 text-white tracking-tight">Experience</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-16"></div>
-            <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
-                {portfolioData.experience.map((job, index) => (
-                    <div key={index} className="bg-slate-800/50 p-6 rounded-lg shadow-lg border border-slate-700 hover:border-cyan-500 transition-colors duration-300 flex flex-col group backdrop-blur-sm">
-                        <div className="flex items-start justify-between mb-4">
-                            <div className="bg-slate-700 p-3 rounded-full">
-                                {job.logo}
-                            </div>
-                            <div className="text-right">
-                                <h3 className="text-xl font-bold text-white">{job.role}</h3>
-                                <p className="text-cyan-400 font-semibold">{job.company}</p>
-                            </div>
-                        </div>
-                        <p className="text-gray-400 flex-grow mb-4">{job.description}</p>
-                        <div className="flex items-center text-sm text-gray-500 mt-auto">
-                            <Calendar className="w-4 h-4 mr-2" />
-                            <span>{job.duration}</span>
-                        </div>
-                    </div>
-                ))}
+        {/* Enhanced About Section */}
+        <section id="about" className="py-16 md:py-32 relative">
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-900/80 to-slate-900"></div>
+          <div className="relative">
+            <div className="text-center mb-12 md:mb-20">
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-4 md:mb-6 tracking-tight">
+                About{" "}
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+                  Me
+                </span>
+              </h2>
+              <div className="w-20 h-1 md:w-32 md:h-2 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-6 md:mb-8 rounded-full shadow-lg shadow-cyan-400/20"></div>
+              <p className="text-lg md:text-xl text-cyan-300/80 max-w-2xl mx-auto font-medium px-4">
+                Passionate developer crafting digital solutions that make an
+                impact
+              </p>
             </div>
-        </section>
-        
-        {/* Education Section */}
-        <section id="education" className="py-24">
-            <h2 className="text-4xl font-bold text-center mb-4 text-white tracking-tight">Education</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-12"></div>
-            <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
-                {portfolioData.education.map((edu, index) => (
-                    <div key={index} className="bg-slate-800/50 p-6 rounded-lg shadow-lg border border-slate-700 hover:border-cyan-500 transition-colors duration-300 flex flex-col group backdrop-blur-sm">
-                        <div className="flex items-start justify-between mb-4">
-                            <div className="bg-slate-700 p-3 rounded-full">
-                                <GraduationCap className="w-8 h-8 text-cyan-400" />
-                            </div>
-                            <div className="text-right">
-                                <h3 className="text-xl font-bold text-white">{edu.institution}</h3>
-                                <p className="text-cyan-400 font-semibold">{edu.location}</p>
-                            </div>
+
+            <div className="max-w-5xl mx-auto">
+              <div className="bg-slate-800/30 backdrop-blur-sm border border-slate-700/50 rounded-2xl md:rounded-3xl p-6 md:p-12 shadow-2xl shadow-slate-900/50">
+                <div className="grid lg:grid-cols-3 gap-8 md:gap-12 items-start">
+                  <div className="lg:col-span-2">
+                    <p className="text-base md:text-xl leading-relaxed text-gray-300 mb-6 md:mb-8">
+                      {portfolioData.about}
+                    </p>
+
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                      <div className="text-center">
+                        <div className="text-2xl md:text-3xl font-bold text-cyan-400 mb-1 md:mb-2">
+                          6+
                         </div>
-                        <p className="text-gray-300 flex-grow mb-4">{edu.degree}</p>
-                        <div className="flex items-center text-sm text-gray-500 mt-auto">
-                            <Calendar className="w-4 h-4 mr-2" />
-                            <span>{edu.duration}</span>
+                        <div className="text-xs md:text-sm text-gray-400">
+                          Months Experience
                         </div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-2xl md:text-3xl font-bold text-cyan-400 mb-1 md:mb-2">
+                          10+
+                        </div>
+                        <div className="text-xs md:text-sm text-gray-400">
+                          Projects Completed
+                        </div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-2xl md:text-3xl font-bold text-cyan-400 mb-1 md:mb-2">
+                          5+
+                        </div>
+                        <div className="text-xs md:text-sm text-gray-400">
+                          Technologies
+                        </div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-2xl md:text-3xl font-bold text-cyan-400 mb-1 md:mb-2">
+                          5+
+                        </div>
+                        <div className="text-xs md:text-sm text-gray-400">
+                          Certifications
+                        </div>
+                      </div>
                     </div>
-                ))}
+                  </div>
+
+                  <div className="bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 rounded-2xl p-6 md:p-8 text-center">
+                    <div className="w-16 h-16 md:w-20 md:h-20 bg-cyan-500/10 rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-6 border border-cyan-400/20">
+                      <User className="w-8 h-8 md:w-10 md:h-10 text-cyan-400" />
+                    </div>
+                    <h3 className="text-lg md:text-xl font-bold text-white mb-3 md:mb-4">
+                      Quick Info
+                    </h3>
+                    <div className="space-y-3 md:space-y-4 text-left">
+                      <div className="flex items-center gap-2 md:gap-3 text-gray-300">
+                        <MapPin className="w-4 h-4 md:w-5 md:h-5 text-cyan-400" />
+                        <span className="text-sm md:text-base">
+                          {portfolioData.contact.location}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2 md:gap-3 text-gray-300">
+                        <Phone className="w-4 h-4 md:w-5 md:h-5 text-cyan-400" />
+                        <span className="text-sm md:text-base">
+                          {portfolioData.contact.phone}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2 md:gap-3 text-gray-300">
+                        <Mail className="w-4 h-4 md:w-5 md:h-5 text-cyan-400" />
+                        <span className="text-xs md:text-sm">
+                          {portfolioData.contact.email}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </section>
 
-        {/* Projects Section */}
-        <section id="projects" className="py-24">
-          <h2 className="text-4xl font-bold text-center mb-4 text-white tracking-tight">Projects</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-12"></div>
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {portfolioData.projects.map((project, index) => (
-              <div key={index} className="bg-slate-800/50 rounded-lg shadow-lg border border-slate-700 overflow-hidden hover:border-cyan-500 transition-colors duration-300 flex flex-col group backdrop-blur-sm">
-                <img src={project.imageUrl} alt={project.title} className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
-                <div className="p-6 flex flex-col flex-grow">
-                  <div className="flex-grow">
-                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">{project.title}</h3>
-                    <p className="text-sm font-semibold text-cyan-500 mb-4">{project.stack}</p>
-                    <p className="text-gray-400">{project.description}</p>
+        {/* Enhanced Experience Section */}
+        <section id="experience" className="py-16 md:py-32">
+          <div className="text-center mb-12 md:mb-20">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-4 md:mb-6 tracking-tight">
+              Work{" "}
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+                Experience
+              </span>
+            </h2>
+            <div className="w-20 h-1 md:w-32 md:h-2 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-6 md:mb-8 rounded-full shadow-lg shadow-cyan-400/20"></div>
+            <p className="text-lg md:text-xl text-cyan-300/80 max-w-2xl mx-auto font-medium px-4">
+              My professional journey in tech
+            </p>
+          </div>
+
+          <div className="max-w-6xl mx-auto">
+            <div className="relative">
+              {/* Timeline line - Hidden on mobile, visible on desktop */}
+              <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-cyan-500 to-blue-500 rounded-full shadow-lg shadow-cyan-500/20"></div>
+
+              {portfolioData.experience.map((job, index) => (
+                <div
+                  key={index}
+                  className={`relative flex items-center mb-8 md:mb-16 ${
+                    index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                  } flex-col`}
+                >
+                  {/* Timeline dot */}
+                  <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-cyan-400 rounded-full border-4 border-slate-900 shadow-lg shadow-cyan-400/50 z-10"></div>
+
+                  {/* Content */}
+                  <div className="w-full md:w-5/12 md:pr-12 md:pl-12">
+                    <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-6 md:p-8 shadow-2xl hover:shadow-cyan-500/10 transition-all duration-500 group hover:border-cyan-500/30">
+                      <div className="flex items-start justify-between mb-4 md:mb-6">
+                        <div className="bg-slate-700/50 p-3 md:p-4 rounded-2xl group-hover:bg-cyan-500/10 transition-colors duration-300">
+                          {job.logo}
+                        </div>
+                        <div className="text-right">
+                          <h3 className="text-lg md:text-2xl font-bold text-white mb-1 md:mb-2 group-hover:text-cyan-400 transition-colors">
+                            {job.role}
+                          </h3>
+                          <p className="text-cyan-400 font-semibold text-base md:text-lg">
+                            {job.company}
+                          </p>
+                        </div>
+                      </div>
+                      <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-4 md:mb-6">
+                        {job.description}
+                      </p>
+                      <div className="flex items-center text-cyan-300/80">
+                        <Calendar className="w-4 h-4 md:w-5 md:h-5 mr-2 md:mr-3" />
+                        <span className="font-semibold text-sm md:text-base">
+                          {job.duration}
+                        </span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="mt-6 pt-4 border-t border-slate-700 flex items-center justify-end gap-4">
-                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center text-gray-400 hover:text-cyan-400 transition-colors duration-300 text-sm font-medium">
-                          <Github className="w-5 h-5 mr-2" />
-                          GitHub
-                      </a>
-                      <a href={project.report} target="_blank" rel="noopener noreferrer" className="flex items-center text-gray-400 hover:text-cyan-400 transition-colors duration-300 text-sm font-medium">
-                          <FileText className="w-5 h-5 mr-2" />
-                          Report
-                      </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Enhanced Education Section */}
+        <section
+          id="education"
+          className="py-16 md:py-32 bg-slate-800/20 rounded-2xl md:rounded-3xl my-12 md:my-20"
+        >
+          <div className="text-center mb-12 md:mb-20">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-4 md:mb-6 tracking-tight">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+                Education
+              </span>
+            </h2>
+            <div className="w-20 h-1 md:w-32 md:h-2 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-6 md:mb-8 rounded-full shadow-lg shadow-cyan-400/20"></div>
+            <p className="text-lg md:text-xl text-cyan-300/80 max-w-2xl mx-auto font-medium px-4">
+              My academic background and qualifications
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-6 md:gap-8">
+            {portfolioData.education.map((edu, index) => (
+              <div
+                key={index}
+                className="bg-slate-800/30 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-6 md:p-8 shadow-2xl hover:shadow-cyan-500/10 transition-all duration-500 group hover:border-cyan-500/30"
+              >
+                <div className="flex items-start justify-between mb-4 md:mb-6">
+                  <div className="bg-slate-700/50 p-3 md:p-4 rounded-2xl group-hover:bg-cyan-500/10 transition-colors duration-300">
+                    <GraduationCap className="w-6 h-6 md:w-8 md:h-8 text-cyan-400" />
+                  </div>
+                  <div className="text-right">
+                    <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2 group-hover:text-cyan-400 transition-colors">
+                      {edu.institution}
+                    </h3>
+                    <p className="text-cyan-400 font-semibold text-sm md:text-base">
+                      {edu.location}
+                    </p>
+                  </div>
+                </div>
+                <p className="text-gray-300 text-base md:text-lg mb-4 md:mb-6 leading-relaxed">
+                  {edu.degree}
+                </p>
+                <div className="flex items-center text-cyan-300/80">
+                  <Calendar className="w-4 h-4 md:w-5 md:h-5 mr-2 md:mr-3" />
+                  <span className="font-semibold text-sm md:text-base">
+                    {edu.duration}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Enhanced Projects Section */}
+        <section id="projects" className="py-16 md:py-32">
+          <div className="text-center mb-12 md:mb-20">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-4 md:mb-6 tracking-tight">
+              Featured{" "}
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+                Projects
+              </span>
+            </h2>
+            <div className="w-20 h-1 md:w-32 md:h-2 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-6 md:mb-8 rounded-full shadow-lg shadow-cyan-400/20"></div>
+            <p className="text-lg md:text-xl text-cyan-300/80 max-w-2xl mx-auto font-medium px-4">
+              Some of my recent work and personal projects
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto">
+            {portfolioData.projects.map((project, index) => (
+              <div
+                key={index}
+                className="bg-slate-800/30 backdrop-blur-sm rounded-2xl shadow-2xl hover:shadow-cyan-500/10 transition-all duration-500 group border border-slate-700/50 hover:border-cyan-500/30 overflow-hidden flex flex-col"
+              >
+                <div className="relative overflow-hidden">
+                  <img
+                    src={project.imageUrl}
+                    alt={project.title}
+                    className="w-full h-40 md:h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+                  <div className="absolute top-3 left-3 md:top-4 md:left-4">
+                    <div className="bg-slate-800/80 p-1.5 md:p-2 rounded-xl backdrop-blur-sm">
+                      {project.icon}
+                    </div>
+                  </div>
+                  <div className="absolute bottom-3 left-3 md:bottom-4 md:left-4">
+                    <span className="bg-cyan-500/20 text-cyan-300 px-2 py-1 md:px-3 md:py-1 rounded-full text-xs md:text-sm font-semibold border border-cyan-400/30">
+                      {project.stack}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="p-4 md:p-6 flex flex-col flex-grow">
+                  <div className="flex-grow">
+                    <h3 className="text-lg md:text-xl font-bold text-white mb-2 md:mb-3 group-hover:text-cyan-400 transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-gray-300 text-sm md:text-base leading-relaxed">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  <div className="mt-4 md:mt-6 pt-3 md:pt-4 border-t border-slate-700/50 flex items-center justify-between">
+                    <div
+                      onClick={() => handleProjectLinkClick(project.github)}
+                      className="flex items-center gap-1 md:gap-2 text-gray-400 hover:text-cyan-400 transition-colors duration-300 font-medium group/link cursor-pointer"
+                    >
+                      <Github className="w-4 h-4 md:w-5 md:h-5" />
+                      <span className="text-sm md:text-base">Code</span>
+                      <ExternalLink className="w-3 h-3 md:w-4 md:h-4 opacity-0 group-hover/link:opacity-100 transition-opacity" />
+                    </div>
+                    <div
+                      onClick={() => handleProjectLinkClick(project.report)}
+                      className="flex items-center gap-1 md:gap-2 text-gray-400 hover:text-cyan-400 transition-colors duration-300 font-medium group/link cursor-pointer"
+                    >
+                      <FileText className="w-4 h-4 md:w-5 md:h-5" />
+                      <span className="text-sm md:text-base">Details</span>
+                      <ExternalLink className="w-3 h-3 md:w-4 md:h-4 opacity-0 group-hover/link:opacity-100 transition-opacity" />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -395,21 +778,53 @@ export default function App() {
           </div>
         </section>
 
-        {/* Tech Stack Section */}
-        <section id="skills" className="py-24">
-          <h2 className="text-4xl font-bold text-center mb-4 text-white tracking-tight">My Tech Stack</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-12"></div>
-          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {portfolioData.skills.map((skillCategory) => (
-              <div key={skillCategory.category} className="bg-slate-800/50 border border-slate-700 rounded-lg p-6 backdrop-blur-sm">
-                <h3 className="text-xl font-semibold text-white mb-4">{skillCategory.category}</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  {skillCategory.items.map((skill) => (
-                    <div key={skill} className="flex items-center gap-3 bg-slate-800 p-3 rounded-md">
-                      <div className="text-cyan-400">
-                        <SkillIcon name={skill.replace('.js','')} />
+        {/* Enhanced Tech Stack Section */}
+        <section
+          id="skills"
+          className="py-16 md:py-32 bg-slate-800/20 rounded-2xl md:rounded-3xl my-12 md:my-20"
+        >
+          <div className="text-center mb-12 md:mb-20">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-4 md:mb-6 tracking-tight">
+              Tech{" "}
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+                Stack
+              </span>
+            </h2>
+            <div className="w-20 h-1 md:w-32 md:h-2 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-6 md:mb-8 rounded-full shadow-lg shadow-cyan-400/20"></div>
+            <p className="text-lg md:text-xl text-cyan-300/80 max-w-2xl mx-auto font-medium px-4">
+              Technologies and tools I work with
+            </p>
+          </div>
+
+          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {portfolioData.skills.map((skillCategory, categoryIndex) => (
+              <div
+                key={skillCategory.category}
+                className="bg-slate-800/30 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-6 md:p-8 shadow-2xl hover:shadow-cyan-500/10 transition-all duration-500 group hover:border-cyan-500/30"
+              >
+                <div className="flex items-center gap-2 md:gap-3 mb-4 md:mb-6 justify-center">
+                  {skillCategory.icon}
+                  <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors">
+                    {skillCategory.category}
+                  </h3>
+                </div>
+                <div className="grid grid-cols-2 gap-3 md:gap-4">
+                  {skillCategory.items.map((skill, skillIndex) => (
+                    <div
+                      key={skill}
+                      className="flex items-center gap-2 md:gap-4 bg-slate-800/50 p-3 md:p-4 rounded-xl hover:bg-cyan-500/10 transition-all duration-300 group/item border border-slate-700/50 hover:border-cyan-400/30 cursor-pointer"
+                      style={{
+                        animationDelay: `${
+                          categoryIndex * 100 + skillIndex * 50
+                        }ms`,
+                      }}
+                    >
+                      <div className="group-hover/item:scale-110 transition-transform duration-300">
+                        <SkillIcon name={skill} />
                       </div>
-                      <span className="text-gray-300">{skill}</span>
+                      <span className="text-gray-300 font-medium text-sm md:text-base group-hover/item:text-white transition-colors">
+                        {skill}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -417,98 +832,271 @@ export default function App() {
             ))}
           </div>
         </section>
-        
-        {/* Certificates Section */}
-        <section id="certificates" className="py-24">
-          <h2 className="text-4xl font-bold text-center mb-4 text-white tracking-tight">Certificates</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-12"></div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+
+        {/* Enhanced Certificates Section */}
+        <section id="certificates" className="py-16 md:py-32">
+          <div className="text-center mb-12 md:mb-20">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-4 md:mb-6 tracking-tight">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+                Certificates
+              </span>{" "}
+              & Achievements
+            </h2>
+            <div className="w-20 h-1 md:w-32 md:h-2 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-6 md:mb-8 rounded-full shadow-lg shadow-cyan-400/20"></div>
+            <p className="text-lg md:text-xl text-cyan-300/80 max-w-2xl mx-auto font-medium px-4">
+              My professional certifications and accomplishments
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
             {portfolioData.certificates.map((cert, index) => (
-              <div key={index} onClick={() => setSelectedCert(cert)} className="bg-slate-800/50 rounded-lg shadow-lg border border-slate-700 overflow-hidden hover:border-cyan-500 transition-all duration-300 flex flex-col group backdrop-blur-sm cursor-pointer">
-                <img src={cert.imageUrl} alt={cert.title} className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300" />
-                <div className="p-4 flex flex-col flex-grow">
-                    <h3 className="text-lg font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors">{cert.title}</h3>
-                    <p className="text-sm font-semibold text-cyan-500">{cert.issuer}</p>
+              <div
+                key={index}
+                onClick={() => setSelectedCert(cert)}
+                className="bg-slate-800/30 backdrop-blur-sm rounded-2xl shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 group border border-slate-700/50 hover:border-cyan-500/50 overflow-hidden cursor-pointer transform hover:-translate-y-1 md:hover:-translate-y-2"
+              >
+                <div className="relative overflow-hidden">
+                  <img
+                    src={cert.imageUrl}
+                    alt={cert.title}
+                    className="w-full h-32 md:h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent"></div>
+                  <div className="absolute top-3 right-3 md:top-4 md:right-4">
+                    <div className="bg-slate-800/80 p-1.5 md:p-2 rounded-xl backdrop-blur-sm">
+                      {cert.icon}
+                    </div>
+                  </div>
+                </div>
+                <div className="p-4 md:p-6">
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2 group-hover:text-cyan-400 transition-colors">
+                    {cert.title}
+                  </h3>
+                  <p className="text-cyan-400 font-semibold text-sm md:text-base">
+                    {cert.issuer}
+                  </p>
                 </div>
               </div>
             ))}
           </div>
         </section>
 
-        {/* Contact Section */}
-        <section id="contact" className="py-24">
-            <h2 className="text-4xl font-bold text-center mb-4 text-white tracking-tight">Get In Touch</h2>
-            <p className="text-lg text-center text-gray-400 max-w-2xl mx-auto mb-12">
-                I'm currently open to new opportunities and collaborations. Feel free to reach out!
+        {/* Enhanced Contact Section */}
+        <section id="contact" className="py-16 md:py-32">
+          <div className="text-center mb-12 md:mb-20">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-4 md:mb-6 tracking-tight">
+              Let's{" "}
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+                Connect
+              </span>
+            </h2>
+            <div className="w-20 h-1 md:w-32 md:h-2 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-6 md:mb-8 rounded-full shadow-lg shadow-cyan-400/20"></div>
+            <p className="text-lg md:text-xl text-cyan-300/80 max-w-2xl mx-auto font-medium px-4">
+              Ready to bring your ideas to life? Let's start a conversation!
             </p>
-            <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 mb-8">
-                <a href={`mailto:${portfolioData.contact.email}`} className="bg-slate-800/50 p-6 rounded-lg shadow-lg border border-slate-700 hover:border-cyan-500 transition-colors duration-300 flex items-center gap-4 group backdrop-blur-sm">
-                    <div className="bg-slate-700 p-4 rounded-full">
-                        <Mail className="w-8 h-8 text-cyan-400" />
+          </div>
+
+          <div className="max-w-6xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-8 md:gap-12">
+              {/* Contact Information */}
+              <div className="space-y-6 md:space-y-8">
+                <div className="bg-slate-800/30 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-6 md:p-8 shadow-2xl">
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6">
+                    Get in touch
+                  </h3>
+
+                  <div className="space-y-4 md:space-y-6">
+                    <div
+                      onClick={handleEmailClick}
+                      className="flex items-center gap-4 md:gap-6 p-3 md:p-4 rounded-xl bg-slate-800/50 hover:bg-cyan-500/10 border border-slate-700/50 hover:border-cyan-400/50 transition-all duration-300 group w-full text-left cursor-pointer"
+                    >
+                      <div className="bg-slate-700 p-2 md:p-4 rounded-xl group-hover:bg-cyan-500/20 transition-colors">
+                        <Mail className="w-6 h-6 md:w-8 md:h-8 text-cyan-400" />
+                      </div>
+                      <div>
+                        <h4 className="text-white font-semibold text-base md:text-lg">
+                          Email
+                        </h4>
+                        <p className="text-gray-400 group-hover:text-cyan-300 transition-colors text-sm md:text-base">
+                          {portfolioData.contact.email}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                        <h3 className="text-xl font-bold text-white">Email</h3>
-                        <p className="text-gray-400 group-hover:text-cyan-300 transition-colors">{portfolioData.contact.email}</p>
+
+                    <div
+                      onClick={handlePhoneClick}
+                      className="flex items-center gap-4 md:gap-6 p-3 md:p-4 rounded-xl bg-slate-800/50 hover:bg-cyan-500/10 border border-slate-700/50 hover:border-cyan-400/50 transition-all duration-300 group w-full text-left cursor-pointer"
+                    >
+                      <div className="bg-slate-700 p-2 md:p-4 rounded-xl group-hover:bg-cyan-500/20 transition-colors">
+                        <Phone className="w-6 h-6 md:w-8 md:h-8 text-cyan-400" />
+                      </div>
+                      <div>
+                        <h4 className="text-white font-semibold text-base md:text-lg">
+                          Phone
+                        </h4>
+                        <p className="text-gray-400 group-hover:text-cyan-300 transition-colors text-sm md:text-base">
+                          {portfolioData.contact.phone}
+                        </p>
+                      </div>
                     </div>
-                </a>
-                <a href={`tel:${portfolioData.contact.phone}`} className="bg-slate-800/50 p-6 rounded-lg shadow-lg border border-slate-700 hover:border-cyan-500 transition-colors duration-300 flex items-center gap-4 group backdrop-blur-sm">
-                    <div className="bg-slate-700 p-4 rounded-full">
-                        <Phone className="w-8 h-8 text-cyan-400" />
+
+                    <div className="flex items-center gap-4 md:gap-6 p-3 md:p-4 rounded-xl bg-slate-800/50 border border-slate-700/50">
+                      <div className="bg-slate-700 p-2 md:p-4 rounded-xl">
+                        <MapPin className="w-6 h-6 md:w-8 md:h-8 text-cyan-400" />
+                      </div>
+                      <div>
+                        <h4 className="text-white font-semibold text-base md:text-lg">
+                          Location
+                        </h4>
+                        <p className="text-gray-400 text-sm md:text-base">
+                          {portfolioData.contact.location}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                        <h3 className="text-xl font-bold text-white">Phone</h3>
-                        <p className="text-gray-400 group-hover:text-cyan-300 transition-colors">{portfolioData.contact.phone}</p>
-                    </div>
-                </a>
-            </div>
-            <div className="text-center">
-                <h3 className="text-2xl font-bold text-white mb-6">Find me on</h3>
-                <div className="flex justify-center items-center gap-6">
-                    <a href={portfolioData.contact.socials.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-transform hover:scale-110"><Linkedin className="w-8 h-8"/></a>
-                    <a href={portfolioData.contact.socials.github} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-transform hover:scale-110"><Github className="w-8 h-8"/></a>
-                    <a href={portfolioData.contact.socials.instagram} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-transform hover:scale-110"><Instagram className="w-8 h-8"/></a>
-                    <a href={portfolioData.contact.socials.salesforce} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-transform hover:scale-110"><SalesforceIcon /></a>
-                    <a href={portfolioData.contact.socials.codolio} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-transform hover:scale-110 font-bold text-3xl flex items-center justify-center w-8 h-8 rounded-full bg-slate-700">C</a>
+                  </div>
                 </div>
+
+                {/* Social Links */}
+                <div className="bg-slate-800/30 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-6 md:p-8 shadow-2xl">
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 text-center">
+                    Follow me
+                  </h3>
+                  <div className="flex justify-center items-center gap-4 md:gap-6">
+                    {Object.entries(portfolioData.contact.socials).map(
+                      ([platform, url]) => (
+                        <div
+                          key={platform}
+                          onClick={() => handleSocialClick(url)}
+                          className="group bg-slate-800/50 p-3 md:p-4 rounded-xl border border-slate-700/50 hover:border-cyan-400/50 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-cyan-500/20 cursor-pointer"
+                        >
+                          <SocialIcon
+                            platform={platform}
+                            className="text-gray-400 group-hover:text-cyan-400"
+                          />
+                        </div>
+                      )
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Quick Contact Form */}
+              <div className="bg-slate-800/30 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-6 md:p-8 shadow-2xl">
+                <h3 className="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6">
+                  Send a message
+                </h3>
+                <form className="space-y-4 md:space-y-6">
+                  <div className="grid md:grid-cols-2 gap-3 md:gap-4">
+                    <input
+                      type="text"
+                      placeholder="Your Name"
+                      className="w-full bg-slate-800/50 border border-slate-700/50 rounded-xl px-3 md:px-4 py-2 md:py-3 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-400 transition-colors duration-300 text-sm md:text-base"
+                    />
+                    <input
+                      type="email"
+                      placeholder="Your Email"
+                      className="w-full bg-slate-800/50 border border-slate-700/50 rounded-xl px-3 md:px-4 py-2 md:py-3 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-400 transition-colors duration-300 text-sm md:text-base"
+                    />
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Subject"
+                    className="w-full bg-slate-800/50 border border-slate-700/50 rounded-xl px-3 md:px-4 py-2 md:py-3 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-400 transition-colors duration-300 text-sm md:text-base"
+                  />
+                  <textarea
+                    placeholder="Your Message"
+                    rows="4"
+                    className="w-full bg-slate-800/50 border border-slate-700/50 rounded-xl px-3 md:px-4 py-2 md:py-3 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-400 transition-colors duration-300 resize-none text-sm md:text-base"
+                  ></textarea>
+                  <div className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold py-3 md:py-4 px-6 md:px-8 rounded-xl hover:from-cyan-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-cyan-500/30 transform hover:-translate-y-1 flex items-center justify-center gap-2 md:gap-3 cursor-pointer">
+                    <Mail className="w-4 h-4 md:w-5 md:h-5" />
+                    <span className="text-sm md:text-base">Send Message</span>
+                  </div>
+                </form>
+              </div>
             </div>
+          </div>
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="text-center py-8 mt-12 border-t border-slate-800">
-        <p className="text-gray-500">&copy; {new Date().getFullYear()} Vansh Garg. All Rights Reserved.</p>
+      {/* Enhanced Footer */}
+      <footer className="relative py-8 md:py-12 mt-12 md:mt-20 border-t border-slate-800/50 bg-slate-900/50 backdrop-blur-sm">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center">
+            <div className="flex items-center justify-center gap-2 md:gap-3 mb-4 md:mb-6">
+              <div className="w-2 h-2 md:w-3 md:h-3 bg-cyan-400 rounded-full animate-pulse"></div>
+              <span className="text-white font-bold text-lg md:text-xl tracking-tight">
+                Vansh Garg
+              </span>
+            </div>
+            <p className="text-gray-500 mb-6 md:mb-8 max-w-2xl mx-auto text-sm md:text-lg px-4">
+              Building innovative solutions with cutting-edge technology. Let's
+              create something amazing together.
+            </p>
+            <div className="flex items-center justify-center gap-4 md:gap-6 mb-6 md:mb-8">
+              {Object.entries(portfolioData.contact.socials).map(
+                ([platform, url]) => (
+                  <div
+                    key={platform}
+                    onClick={() => handleSocialClick(url)}
+                    className="text-gray-500 hover:text-cyan-400 transition-colors duration-300 hover:scale-110 cursor-pointer"
+                  >
+                    <SocialIcon platform={platform} />
+                  </div>
+                )
+              )}
+            </div>
+            <p className="text-gray-600 text-xs md:text-sm">
+              &copy; {new Date().getFullYear()} Vansh Garg. All Rights Reserved.
+            </p>
+          </div>
+        </div>
       </footer>
 
-      {/* Certificate Modal */}
+      {/* Enhanced Certificate Modal */}
       {selectedCert && (
-        <div 
+        <div
           onClick={() => setSelectedCert(null)}
-          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4 transition-opacity duration-300"
+          className="fixed inset-0 bg-black/90 backdrop-blur-sm flex items-center justify-center z-50 p-4 transition-all duration-300"
         >
-          <div 
+          <div
             onClick={(e) => e.stopPropagation()}
-            className="bg-slate-800 border border-slate-700 p-4 rounded-lg max-w-4xl w-full max-h-[90vh] relative shadow-2xl"
+            className="bg-slate-800 border border-slate-700 rounded-2xl md:rounded-3xl p-4 md:p-6 max-w-4xl w-full max-h-[90vh] relative shadow-2xl shadow-slate-900/50"
           >
-            <button 
+            <div
               onClick={() => setSelectedCert(null)}
-              className="absolute -top-3 -right-3 bg-cyan-500 text-white p-2 rounded-full hover:bg-cyan-600 transition-colors"
+              className="absolute -top-2 -right-2 md:-top-4 md:-right-4 bg-cyan-500 text-white p-2 md:p-3 rounded-full hover:bg-cyan-600 transition-all duration-300 shadow-lg hover:shadow-cyan-500/50 transform hover:scale-110 z-10 cursor-pointer"
             >
-              <X className="w-5 h-5" />
-            </button>
-            <img src={selectedCert.imageUrl} alt={selectedCert.title} className="w-full h-auto object-contain max-h-[80vh] rounded" />
+              <X className="w-4 h-4 md:w-6 md:h-6" />
+            </div>
+            <div className="relative">
+              <img
+                src={selectedCert.imageUrl}
+                alt={selectedCert.title}
+                className="w-full h-auto object-contain max-h-[70vh] rounded-xl md:rounded-2xl"
+              />
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-900 to-transparent p-4 md:p-6 rounded-b-xl md:rounded-b-2xl">
+                <h3 className="text-lg md:text-2xl font-bold text-white mb-1 md:mb-2">
+                  {selectedCert.title}
+                </h3>
+                <p className="text-cyan-400 font-semibold text-sm md:text-base">
+                  {selectedCert.issuer}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       )}
 
-      {/* Scroll to Top Button */}
+      {/* Enhanced Scroll to Top Button */}
       {showScrollTop && (
-        <button 
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-8 right-8 bg-cyan-500 text-white p-3 rounded-full shadow-lg hover:bg-cyan-600 transition-all duration-300 z-40 transform hover:scale-110"
+        <div
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="fixed bottom-4 right-4 md:bottom-8 md:right-8 bg-gradient-to-r from-cyan-500 to-blue-600 text-white p-3 md:p-4 rounded-2xl shadow-2xl hover:shadow-cyan-500/40 transition-all duration-300 z-40 transform hover:-translate-y-1 hover:scale-110 group cursor-pointer"
           aria-label="Scroll to top"
         >
-          <ArrowUp className="w-6 h-6" />
-        </button>
+          <ArrowUp className="w-5 h-5 md:w-6 md:h-6 group-hover:-translate-y-1 transition-transform" />
+        </div>
       )}
     </div>
   );
